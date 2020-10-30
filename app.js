@@ -36,11 +36,10 @@ app.use(bodyParser.urlencoded({extended: false}));
 );*/
 app.post('/insert', (request, response) => {
     
-    const { nombre,periodo,semestre ,fecha} = request.body;
-    console.log({ nombre,periodo,semestre,fecha })
+    const { nombre,periodo,semestre ,fecha,salon,horario} = request.body;
     const db = dbService.getDbServiceInstance();
     
-    const result = db.insertNewName(nombre,periodo,semestre ,fecha);
+    const result = db.insertNewName(nombre,periodo,semestre ,fecha,salon,horario);
 
     result
     .then(data => response.json({ data: data}))
@@ -49,16 +48,37 @@ app.post('/insert', (request, response) => {
 
 app.get('/getAll', (request, response) => {
     const db = dbService.getDbServiceInstance();
-
     const result = db.getAllData();
-    
-    
+
     result
     .then(data => response.json({data : data}))
     .catch(err => console.log(err));
     
 })
 
+app.delete('/delete/:id', (request, response) => {
+    const { id } = request.params;
+    
+
+    const db = dbService.getDbServiceInstance();
+
+    const result = db.deleteRowById(id);
+    
+    result
+    .then(data => response.json({success : data}))
+    .catch(err => console.log(err));
+});
+
+app.patch('/update', (request, response) => {
+    const { id, name } = request.body;
+    const db = dbService.getDbServiceInstance();
+
+    const result = db.updateNameById(id, name);
+    
+    result
+    .then(data => response.json({success : data}))
+    .catch(err => console.log(err));
+});
 
 
 

@@ -42,14 +42,14 @@ class DbService {
     }
 
 
-    async insertNewName(nombre,periodo,semestre ,fecha) {
+    async insertNewName(nombre,periodo,semestre ,fecha,salon,horario) {
         
         try {
             
             const insertId = await new Promise((resolve, reject) => {
-                const query = "INSERT INTO examenes (nombre,periodo,semestre,fecha) VALUES (?,?,?,?);";
+                const query = "INSERT INTO examenes (nombre,periodo,semestre,fecha,salon,horario) VALUES (?,?,?,?,?,?);";
 
-                connection.query(query, [nombre,periodo,semestre ,fecha] , (err, result) => {
+                connection.query(query, [nombre,periodo,semestre ,fecha,salon,horario] , (err, result) => {
                     if (err) reject(new Error(err.message));
                     resolve(result.insertId);
                 })
@@ -60,7 +60,9 @@ class DbService {
                 nombre: name,
                 fecha : fecha,
                 periodo:periodo,
-                semeste:semestre
+                semeste:semestre,
+                salon: salon,
+                periodo:periodo
             };
         } catch (error) {
             console.log(error);
@@ -72,7 +74,7 @@ class DbService {
         try {
             id = parseInt(id, 10); 
             const response = await new Promise((resolve, reject) => {
-                const query = "DELETE FROM names WHERE id = ?";
+                const query = "DELETE FROM examenes WHERE id_exam = ?";
     
                 connection.query(query, [id] , (err, result) => {
                     if (err) reject(new Error(err.message));

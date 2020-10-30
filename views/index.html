@@ -63,6 +63,10 @@
                     <label for="inputState">Nombre:</label>
                     <input type="text" name="nombre" id="name-input" placeholder="nombre" class="form-control">
                     </div>
+                    <div class="form-group">
+                      <label for="inputState">Salon:</label>
+                      <input type="text" name="salon" id="salon-input" placeholder="Salon" class="form-control">
+                      </div>
             
                     <div class="form-group">
                         <label for="inputState">Periodo:</label>
@@ -89,11 +93,16 @@
                           <option>X</option>
                         </select>
                     </div>
-                    <div class="form-grup">
+                    <div class="md-form md-outline">
+                      <label for="default-picker">Horario</label>
+                      <input type="time" id="horario-input" name="horario"  class="form-control" >
+                      
+                    </div>
+                    <div class="form-grup" style="margin-top: 20px;">
                         <label for="fecha">Fecha :</label> 
                         <input type="date"  name="fecha" id="fecha-input" >
                     </div>
-                    <button type="button" class="btn btn-primary" id ="addBtn">Primary</button>
+                    <button type="button" class="btn btn-primary" id ="addBtn" style="margin-top: 20px;">Agregar</button>
                 </form>
             </div>
             </div>
@@ -101,13 +110,17 @@
                 <nav class="navbar navbar-light bg-light">
                     <span class="navbar-brand mb-0 h1">Examenes Actuales</span>
                   </nav>
-                  <table id="table" class="thExam">
+                  <table id="table" class=" table table-striped thExam">
                     <thead>
                         <th class="thExam">ID</th>
-                        <th class="thExam">Name</th>
-                        <th class="thExam">Date Added</th>
-                        <th class="thExam">Delete</th>
-                        <th class="thExam">Edit</th>
+                        <th class="thExam">Nombre</th>
+                        <th class="thExam">Fecha</th>
+                        <th class="thExam">Periodo</th>  
+                        <th class="thExam">Semestre</th>
+                        <th class="thExam">Salon</th> 
+                        <th class="thExam">Horario</th>               
+                        <th class="thExam">Borrar</th>
+                        <th class="thExam">Editar</th>
                     </thead>
                     <tbody id="tableBody"></tbody>
                 </table>
@@ -119,6 +132,8 @@
     </div>
     
     <script src="../public/js/examenes.js"></script>
-
+    <!-- jQuery and JS bundle w/ Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </body>
 </html>
