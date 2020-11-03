@@ -1,139 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Examenes</title>
-    <link rel="stylesheet" href="../public/css/examenes.css">
-   
+    <link rel="stylesheet" href="../public/css/examenes.css" />
+
     <!-- CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-
-
-
-
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
     <nav
-    class="navbar navbar-expand-lg overflow"
-    style="background-color: #004e91"
-    
-  >
-    <!-- me centra los elementos de la barra de nav-->
-
-    <a class="navbar-brand" href="#"
-      ><img
-        src="http://fceecat.um.edu.uy/imgs/logo.png"
-        class="logo-Fbrand"
-        alt="logo"
-        
-    /></a>
-    <h4 class="barraPrincipal" style="color: white; margin-bottom: 1px">
-      Agregar y borrar examenes
-    </h4>
-
-    <button
-      class="navbar-toggler"
-      id="hamburger"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
+      class="navbar navbar-expand-lg overflow"
+      style="background-color: #004e91"
     >
-      <i class="icon ion-md-grid"> </i>
-    </button>
+      <!-- me centra los elementos de la barra de nav-->
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto" id="navbar"></ul>
-    </div>
-  </nav>
+      <a class="navbar-brand" href="#"
+        ><img
+          src="http://fceecat.um.edu.uy/imgs/logo.png"
+          class="logo-Fbrand"
+          alt="logo"
+      /></a>
+      <h4 class="barraPrincipal" style="color: white; margin-bottom: 1px">
+        Agregar y borrar examenes
+      </h4>
+
+      <button
+        class="navbar-toggler"
+        id="hamburger"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="icon ion-md-grid"> </i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto" id="navbar"></ul>
+      </div>
+    </nav>
 
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-4 mt-4 ">
-                <nav class="navbar navbar-light bg-light">
-                    <span class="navbar-brand mb-0 h1">Agregar Examen</span>
-                  </nav>
-                  <div class="jumbotron">
-                <form  >
-                    
-                    <div class="form-group">
-                    <label for="inputState">Nombre:</label>
-                    <input type="text" name="nombre" id="name-input" placeholder="nombre" class="form-control">
-                    </div>
-                    <div class="form-group">
-                      <label for="inputState">Salon:</label>
-                      <input type="text" name="salon" id="salon-input" placeholder="Salon" class="form-control">
-                      </div>
-            
-                    <div class="form-group">
-                        <label for="inputState">Periodo:</label>
-                        <select type="text" name="periodo" placeholder="periodo" id="periodo-input" class="form-control">
-                            <option selected>Selecione...</option>
-                            <option>I</option>
-                            <option>II</option>
-                            <option>III</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputState">Semestre:</label>
-                        <select type="text" name="semestre" placeholder="semestre" id="semestre-input"  class="form-control">
-                            <option selected>Selecione...</option>
-                            <option>I</option>
-                            <option>II</option>
-                            <option>III</option>
-                            <option>IV</option>
-                          <option>V</option>
-                          <option>VI</option>
-                          <option>VII</option>
-                          <option>VIII</option>
-                          <option>IX</option>
-                          <option>X</option>
-                        </select>
-                    </div>
-                    <div class="md-form md-outline">
-                      <label for="default-picker">Horario</label>
-                      <input type="time" id="horario-input" name="horario"  class="form-control" >
-                      
-                    </div>
-                    <div class="form-grup" style="margin-top: 20px;">
-                        <label for="fecha">Fecha :</label> 
-                        <input type="date"  name="fecha" id="fecha-input" >
-                    </div>
-                    <button type="button" class="btn btn-primary" id ="addBtn" style="margin-top: 20px;">Agregar</button>
-                </form>
-            </div>
-            </div>
-            <div class="col-6 mt-4 text-centre">
-                <nav class="navbar navbar-light bg-light">
-                    <span class="navbar-brand mb-0 h1">Examenes Actuales</span>
-                  </nav>
-                  <table id="table" class=" table table-striped thExam">
-                    <thead>
-                        <th class="thExam">ID</th>
-                        <th class="thExam">Nombre</th>
-                        <th class="thExam">Fecha</th>
-                        <th class="thExam">Periodo</th>  
-                        <th class="thExam">Semestre</th>
-                        <th class="thExam">Salon</th> 
-                        <th class="thExam">Horario</th>               
-                        <th class="thExam">Borrar</th>
-                        <th class="thExam">Editar</th>
-                    </thead>
-                    <tbody id="tableBody"></tbody>
-                </table>
-            </div>
-    
-           
+      <div class="row">
+        <div class="col-3 mt-3">
+          <nav class="navbar navbar-light bg-light">
+            <span class="navbar-brand mb-0 h1">Agregar Examen</span>
+          </nav>
+          <div class="jumbotron">
+            <form>
+              <div class="form-group">
+                <label for="inputState">Nombre:</label>
+                <input
+                  type="text"
+                  name="nombre"
+                  id="name-input"
+                  placeholder="nombre"
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group">
+                <label for="inputState">Salon:</label>
+                <input
+                  type="text"
+                  name="salon"
+                  id="salon-input"
+                  placeholder="Salon"
+                  class="form-control"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="inputState">Periodo:</label>
+                <select
+                  type="text"
+                  name="periodo"
+                  placeholder="periodo"
+                  id="periodo-input"
+                  class="form-control"
+                >
+                  <option selected>Selecione...</option>
+                  <option>I</option>
+                  <option>II</option>
+                  <option>III</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="inputState">Semestre:</label>
+                <select
+                  type="text"
+                  name="semestre"
+                  placeholder="semestre"
+                  id="semestre-input"
+                  class="form-control"
+                >
+                  <option selected>Selecione...</option>
+                  <option>I</option>
+                  <option>II</option>
+                  <option>III</option>
+                  <option>IV</option>
+                  <option>V</option>
+                  <option>VI</option>
+                  <option>VII</option>
+                  <option>VIII</option>
+                  <option>IX</option>
+                  <option>X</option>
+                </select>
+              </div>
+              <div class="md-form md-outline">
+                <label for="default-picker">Horario</label>
+                <input
+                  type="time"
+                  id="horario-input"
+                  name="horario"
+                  class="form-control"
+                />
+              </div>
+              <div class="form-grup" style="margin-top: 20px">
+                <label for="fecha">Fecha :</label>
+                <input type="date" name="fecha" id="fecha-input" />
+              </div>
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="addBtn"
+                style="margin-top: 20px"
+              >
+                Agregar
+              </button>
+            </form>
+          </div>
         </div>
-        
+        <div class="col-7 mt-4 text-centre">
+          <nav class="navbar navbar-light bg-light">
+            <span class="navbar-brand mb-0 h1">Examenes Actuales</span>
+          </nav>
+          <div class="example-1">
+            <table id="table" class="table table-striped thExam">
+              <thead>
+                <th class="thExam">ID</th>
+                <th class="thExam">Nombre</th>
+                <th class="thExam">Fecha</th>
+                <th class="thExam">Periodo</th>
+                <th class="thExam">Semestre</th>
+                <th class="thExam">Salon</th>
+                <th class="thExam">Horario</th>
+                <th class="thExam">Borrar</th>
+                <th class="thExam">Editar</th>
+              </thead>
+              <tbody id="tableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="col-2 mt-2">
+          <nav class="navbar navbar-light bg-light">
+            <span class="navbar-brand mb-0 h1">Buscar</span>
+          </nav>
+          <div class="jumbotron">
+            <form>
+              <div class="form-group">
+                <label for="inputState">Nombre:</label>
+                <input
+                  type="text"
+                  id="myInputNombre"
+                  onkeyup="buscar()"
+                  placeholder="Nombre"
+                  title="Type in a name"
+                />
+
+                <label for="inputState">Semestre:</label>
+                <input
+                  type="text"
+                  id="myInputSemestre"
+                  onkeyup="buscar()"
+                  placeholder="Semestre"
+                  title="Type in a name"
+                />
+
+                <label for="inputState">Periodo:</label>
+                <input
+                  type="text"
+                  id="myInputPeriodo"
+                  onkeyup="buscar()"
+                  placeholder="Periodo"
+                  title="Type in a name"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-    
+
     <script src="../public/js/examenes.js"></script>
+    <script>
+  
+    </script>
     <!-- jQuery and JS bundle w/ Popper.js -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-</body>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
