@@ -72,10 +72,11 @@ function insertRowIntoTable(data) {
   const isTableData = table.querySelector(".no-data");
 
   let tableHtml = "<tr>";
-
+  var mes;
   for (var key in data) {
     if (data.hasOwnProperty(key)) {
       if (key === "fecha") {
+    
         data[key] = new Date(data[key]).toLocaleString();
       }
       tableHtml += `<td>${data[key]}</td>`;
@@ -112,12 +113,13 @@ function loadHTMLTable(data) {
     salon,
     horario,
   }) {
+    fecha = new Date(fecha)
     fecha =
-      new Date(fecha).getDate() +
+      fecha.getDate() +
       "/" +
-      new Date(fecha).getMonth() +
+      parseInt(fecha.getMonth() +1) +
       "/" +
-      new Date(fecha).getFullYear();
+      fecha.getFullYear();
     tableHtml += "<tr>";
     tableHtml += `<td>${id_exam}</td>`;
     tableHtml += `<td>${nombre}</td>`;
@@ -135,7 +137,7 @@ function loadHTMLTable(data) {
 }
 
 function buscarNombre() {
-  var input, filter, table, tr, td, i, txtValue,txtValue2,txtValue3;
+  var input, filter, table, tr, td, i, txtValue, txtValue2, txtValue3;
   input = document.getElementById("myInputNombre");
   filter = input.value.toUpperCase();
   table = document.getElementById("table");
@@ -147,7 +149,6 @@ function buscarNombre() {
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().startsWith(filter)) {
         tr[i].style.display = "";
-
       } else {
         tr[i].style.display = "none";
       }
@@ -155,8 +156,8 @@ function buscarNombre() {
   }
 }
 
-function buscarSemestre(){
-  var input, filter, table, tr, td, i, txtValue,txtValue2,txtValue3;
+function buscarSemestre() {
+  var input, filter, table, tr, td, i, txtValue, txtValue2, txtValue3;
   input = document.getElementById("myInputNombre");
   filter = input.value.toUpperCase();
   table = document.getElementById("table");
@@ -168,7 +169,7 @@ function buscarSemestre(){
       td = tr[i].getElementsByTagName("td")[4];
       if (td) {
         txtValue2 = td.textContent || td.innerText;
-        if (txtValue2.toUpperCase().startsWith(filter2) ) {
+        if (txtValue2.toUpperCase().startsWith(filter2)) {
           tr[i].style.display = "";
         } else {
           tr[i].style.display = "none";
@@ -176,12 +177,10 @@ function buscarSemestre(){
       }
     }
   }
-
-
 }
 
-function buscarPeriodo(){
-  var input, filter, table, tr, td, i, txtValue,txtValue2,txtValue3;
+function buscarPeriodo() {
+  var input, filter, table, tr, td, i, txtValue, txtValue2, txtValue3;
   input = document.getElementById("myInputNombre");
   filter = input.value.toUpperCase();
   table = document.getElementById("table");
@@ -192,21 +191,18 @@ function buscarPeriodo(){
   if (input3.value != "") {
     for (i = 0; i < tr.length; i++) {
       td = tr[i].getElementsByTagName("td")[3];
-        txtValue3 = td.textContent || td.innerText;
-        if (txtValue3.toUpperCase()==filter3 ) {
-          tr[i].style.display = "";
-        } else {
-          tr[i].style.display = "none";
-        }
-      
+      txtValue3 = td.textContent || td.innerText;
+      if (txtValue3.toUpperCase() == filter3) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
     }
   }
-
 }
 
-function buscar (){
-
-  var input, filter, table, tr, td, i, txtValue,txtValue2,txtValue3;
+function buscar() {
+  var input, filter, table, tr, td, i, txtValue, txtValue2, txtValue3;
   input = document.getElementById("myInputNombre");
   filter = input.value.toUpperCase();
   table = document.getElementById("table");
@@ -216,35 +212,108 @@ function buscar (){
   input3 = document.getElementById("myInputPeriodo");
   filter3 = input3.value.toUpperCase();
 
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    td2 = tr[i].getElementsByTagName("td")[4];
+    td3 = tr[i].getElementsByTagName("td")[3];
+    if (td && td2 && td3) {
+      txtValue = td.textContent || td.innerText;
+      txtValue2 = td2.textContent || td2.innerText;
+      txtValue3 = td3.textContent || td3.innerText;
 
-
-  if (input.value != "" && input2.value != "" && input3.value != "" ){
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[1];
-      td2 = tr[i].getElementsByTagName("td")[3];
-      td3 = tr[i].getElementsByTagName("td")[4];
-      if(td && td2 && td3){
-        txtValue = td.textContent || td.innerText;
-        txtValue2 = td2.textContent || td2.innerText;
-        txtValue3 = td3.textContent || td3.innerText;
-
-        if (txtValue3.toUpperCase()==filter3 && txtValue2.toUpperCase()==filter2 && txtValue.toUpperCase().startsWith(filter) ) {
+      if (input.value != "" && input2.value != "" && input3.value != "") {
+        if (
+          txtValue3.toUpperCase() == filter3 &&
+          txtValue2.toUpperCase() == filter2 &&
+          txtValue.toUpperCase().startsWith(filter)
+        ) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      } else if (
+        input.value == "" &&
+        input2.value == "" &&
+        input3.value == ""
+      ) {
+        tr[i].style.display = "";
+      } else if (
+        input.value == "" &&
+        input2.value == "" &&
+        input3.value != ""
+      ) {
+        if (txtValue3.toUpperCase() == filter3) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      } else if (
+        input.value == "" &&
+        input2.value != "" &&
+        input3.value == ""
+      ) {
+        if (txtValue2.toUpperCase() == filter2) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      } else if (
+        input.value != "" &&
+        input2.value == "" &&
+        input3.value == ""
+      ) {
+        if (txtValue.toUpperCase().startsWith(filter)) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      } else if (
+        input.value != "" &&
+        input2.value != "" &&
+        input3.value == ""
+      ) {
+        if (
+          txtValue.toUpperCase().startsWith(filter) &&
+          txtValue2.toUpperCase() == filter2
+        ) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      } else if (
+        input.value != "" &&
+        input2.value == "" &&
+        input3.value != ""
+      ) {
+        if (
+          txtValue.toUpperCase().startsWith(filter) &&
+          txtValue3.toUpperCase() == filter3
+        ) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      } else if (
+        input.value == "" &&
+        input2.value != "" &&
+        input3.value != ""
+      ) {
+        if (
+          txtValue3.toUpperCase() == filter3 &&
+          txtValue2.toUpperCase() == filter2
+        ) {
           tr[i].style.display = "";
         } else {
           tr[i].style.display = "none";
         }
       }
-      
-    }
-
-  }
-  else if (input.value == "" && input2.value == "" && input3.value == "" ) {
-    for (i = 0; i < tr.length; i++) {
-        tr[i].style.display = "";
-        
     }
   }
-
 }
 
-
+// if (input.value == "" && input2.value == "" && input3.value == "") {
+// for (i = 0; i < tr.length; i++) {
+// tr[i].style.display = "";
+//}
+// } else if (input.value == "" && input2.value == "" && input3.value != "") {
+// }

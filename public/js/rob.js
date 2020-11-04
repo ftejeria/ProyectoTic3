@@ -4,38 +4,17 @@ let currentYear = today.getFullYear();
 let selectYear = document.getElementById("year");
 let selectMonth = document.getElementById("month");
 
+
+let data2
 document.addEventListener('DOMContentLoaded', function () {
   fetch('http://localhost:5000/getAll')
   .then(response => response.json())
-  .then(data => loadHTMLTable(data['data']));
+  .then(data => showCalendar(currentMonth, currentYear,data['data']));
   
 });
 
 
 
-function loadHTMLTable(data) {
-  console.log("hola")
-  const table = document.querySelector('tableBody');
-
-  if (data.length === 0) {
-      table.innerHTML = "<tr><td class='no-data' colspan='5'>No Data</td></tr>";
-      return;
-  }
-
-  let tableHtml = "";
-
-  data.forEach(function ({id_exam, nombre, fecha}) {
-      tableHtml += "<tr>";
-      tableHtml += `<td>${id_exam}</td>`;
-      tableHtml += `<td>${nombre}</td>`;
-      tableHtml += `<td>${new Date(fecha).toLocaleString()}</td>`;
-      tableHtml += `<td><button class="delete-row-btn" data-id=${id}>Delete</td>`;
-      tableHtml += `<td><button class="edit-row-btn" data-id=${id}>Edit</td>`;
-      tableHtml += "</tr>";
-  });
-
-  table.innerHTML = tableHtml;
-}
 
 let months = [
   "Jan",
@@ -51,48 +30,52 @@ let months = [
   "Nov",
   "Dec",
 ];
-let materias = [
-  { nombre: "Calculo", Fecha: "21/10/2020", Salon: "E103" },
-  { nombre: "Analisis", Fecha: "21/10/2020", Salon: "E103" },
-];
+
 
 let monthAndYear = document.getElementById("monthAndYear");
-showCalendar(currentMonth, currentYear);
+
 
 function next() {
   currentYear = currentMonth === 11 ? currentYear + 1 : currentYear;
   currentMonth = (currentMonth + 1) % 12;
-  showCalendar(currentMonth, currentYear);
+  showCalendar(currentMonth, currentYear,data2);
 }
 
 function previous() {
   currentYear = currentMonth === 0 ? currentYear - 1 : currentYear;
   currentMonth = currentMonth === 0 ? 11 : currentMonth - 1;
-  showCalendar(currentMonth, currentYear);
+  showCalendar(currentMonth, currentYear,data2);
 }
 
 function jump() {
   currentYear = parseInt(selectYear.value);
   currentMonth = parseInt(selectMonth.value);
-  showCalendar(currentMonth, currentYear);
+  showCalendar(currentMonth, currentYear,data2);
 }
 
-function addEvent(date, month, year, materia) {
-  var celId = date + (parseInt(month) - 1).toString() + year;
+function addEvent(date, month, year, materia,data) {
+  var celId = date + (parseInt(month) +1).toString() + year;
+  if (year == currentYear && (month+1) == (currentMonth+1)){
   let eventDay = document.getElementById(celId);
   var event = document.createTextNode(materia);
   var h = document.createElement("button");
   h.className = "btn materia";
   h.id = materia;
   h.style = "margin-left:1px;";
+  h.addEventListener("click", (event) => {
+     
+    informar(h.id,data);
+  
+});
   h.appendChild(event);
   eventDay.appendChild(h);
+  }
 }
 
-function showCalendar(month, year) {
+function showCalendar(month, year,data) {
   let firstDay = new Date(year, month).getDay();
   let daysInMonth = 32 - new Date(year, month, 32).getDate();
-
+  data2 = data
   let tbl = document.getElementById("calendar-body"); // body of the calendar
 
   // clearing all previous cells
@@ -135,7 +118,7 @@ function showCalendar(month, year) {
       } else {
         let cell = document.createElement("td");
         cell.setAttribute("class", "cell");
-        var celId = date.toString() + month.toString() + year.toString();
+        var celId = date.toString() + (month+1).toString() + year.toString();
         cell.setAttribute("id", celId);
         let cellText = document.createTextNode(date);
         if (
@@ -154,19 +137,29 @@ function showCalendar(month, year) {
 
     tbl.appendChild(row); // appending each row into calendar body.
   }
-  for (let index = 0; index < materias.length; index++) {
-    addEvent(
-      materias[index].Fecha.split("/")[0],
-      materias[index].Fecha.split("/")[1],
-      materias[index].Fecha.split("/")[2],
-      materias[index].nombre
-    );
+  for (let index = 0; index < data.length; index++) {
+    fecha = new Date(data[index].fecha)
+   
+
+    addEvent(fecha.getDate(),fecha.getMonth(),fecha.getFullYear(),data[index].nombre,data)
   }
 }
 
-const mouseTarget = document.getElementsByClassName("btn materia");
+var mouseTarget = document.getElementsByClassName("btn materia");
 
-function informar(boton) {
+
+
+//for (let index = 0; index < 5; index++) {
+
+  //mouseTarget[index].addEventListener("click", (event) => {
+     
+    //   informar(mouseTarget[index].id);
+     
+  //});
+//}
+
+console.log(2)
+function informar(boton ,data) {
   // Get the modal
   var modal = document.getElementById("myModal");
 
@@ -192,24 +185,24 @@ function informar(boton) {
     }
   };
 
-  for (let i = 0; i < materias.length; i++) {
-    if (boton == materias[i].nombre) {
-      document.getElementById("materia").innerHTML = materias[i].nombre;
+  for (let i = 0; i < data.length; i++) {
+    if (boton == data[i].nombre) {
+      document.getElementById("materia").innerHTML = data[i].nombre;
       document.getElementById("Salon").innerHTML =
-        "Salon :" + materias[i].Salon;
+        "Salon : " + data[i].salon;
       document.getElementById("Fecha").innerHTML =
-        "Fecha :" + materias[i].Fecha;
+        "Fecha : " + data[i].fecha.toString().substring(0,10);
+        document.getElementById("Semestre").innerHTML =
+        "Semestre : " + data[i].semestre;
+        document.getElementById("Horario").innerHTML =
+        "Horario : " + data[i].horario;
+        document.getElementById("Periodo").innerHTML =
+        "Periodo : " + data[i].periodo;
     }
   }
 }
 
-for (let index = 0; index < mouseTarget.length; index++) {
-  mouseTarget[index].addEventListener("click", (event) => {
-     
-       informar(mouseTarget[index].id);
-     
-  });
-}
+
 
 function moveCalendar() {
   document.getElementById("slicingCalendar").style = "margin-left: 160px ";
