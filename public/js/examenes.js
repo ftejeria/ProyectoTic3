@@ -8,7 +8,7 @@ const addBtn = document.querySelector("#addBtn");
 document
   .querySelector("table tbody")
   .addEventListener("click", function (event) {
-    if (event.target.className === "delete-row-btn") {
+    if (event.target.className === "btn btn-primary delete-row-btn") {
       deleteRowById(event.target.dataset.id);
     }
     if (event.target.className === "edit-row-btn") {
@@ -128,8 +128,8 @@ function loadHTMLTable(data) {
     tableHtml += `<td>${semestre}</td>`;
     tableHtml += `<td>${salon}</td>`;
     tableHtml += `<td>${horario}</td>`;
-    tableHtml += `<td><button class="delete-row-btn" data-id=${id_exam}>Delete</td>`;
-    tableHtml += `<td><button class="edit-row-btn" data-id=${id_exam}>Edit</td>`;
+    tableHtml += `<td><button class="btn btn-primary delete-row-btn" data-id=${id_exam} style="background-color: #004e91">Borrar</td>`;
+    tableHtml += `<td><button class="btn btn-primary edit-row-btn" data-id=${id_exam} style="background-color: #004e91">Editar</td>`;
     tableHtml += "</tr>";
   });
 

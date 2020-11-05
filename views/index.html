@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Examenes</title>
     <link rel="stylesheet" href="../public/css/examenes.css" />
+    <link rel="icon" href="../public/img/umlog.ico" />
 
     <!-- CSS -->
     <link
@@ -55,16 +56,17 @@
           <nav class="navbar navbar-light bg-light">
             <span class="navbar-brand mb-0 h1">Agregar Examen</span>
           </nav>
-          <div class="jumbotron">
+          <div class="jumbotron" style="padding-top:5px;">
             <form>
               <div class="form-group">
                 <label for="inputState">Nombre:</label>
                 <input
                   type="text"
-                  name="nombre"
+                  name="Nombre"
                   id="name-input"
-                  placeholder="nombre"
+                  placeholder="Nombre"
                   class="form-control"
+                  
                 />
               </div>
               <div class="form-group">
@@ -126,13 +128,13 @@
               </div>
               <div class="form-grup" style="margin-top: 20px">
                 <label for="fecha">Fecha :</label>
-                <input type="date" name="fecha" id="fecha-input" />
+                <input type="date" name="fecha" id="fecha-input" class="form-control" />
               </div>
               <button
                 type="button"
                 class="btn btn-primary"
                 id="addBtn"
-                style="margin-top: 20px"
+                style="margin-top: 20px ;background-color: #004e91"
               >
                 Agregar
               </button>
@@ -163,9 +165,9 @@
 
         <div class="col-2 mt-2">
           <nav class="navbar navbar-light bg-light">
-            <span class="navbar-brand mb-0 h1">Buscar</span>
+            <span class="navbar-brand mb-0 h1" >Buscar</span>
           </nav>
-          <div class="jumbotron">
+          <div class="jumbotron" style="padding-top:5px;">
             <form>
               <div class="form-group">
                 <label for="inputState">Nombre:</label>
@@ -175,6 +177,7 @@
                   onkeyup="buscar()"
                   placeholder="Nombre"
                   title="Type in a name"
+                  class="form-control"
                 />
 
                 <label for="inputState">Semestre:</label>
@@ -184,6 +187,7 @@
                   onkeyup="buscar()"
                   placeholder="Semestre"
                   title="Type in a name"
+                  class="form-control"
                 />
 
                 <label for="inputState">Periodo:</label>
@@ -193,6 +197,7 @@
                   onkeyup="buscar()"
                   placeholder="Periodo"
                   title="Type in a name"
+                  class="form-control"
                 />
               </div>
             </form>

@@ -61,7 +61,7 @@ function addEvent(date, month, year, materia,data) {
   var h = document.createElement("button");
   h.className = "btn materia";
   h.id = materia;
-  h.style = "margin-left:1px;";
+  h.style = "margin-left:1px;margin-top:1px;background-color:#004e91;color:white";
   h.addEventListener("click", (event) => {
      
     informar(h.id,data);
@@ -82,18 +82,18 @@ function showCalendar(month, year,data) {
   tbl.innerHTML = "";
 
   // filing data about month and in the page via DOM.
-  monthAndYear.innerHTML =
+  monthAndYear.innerHTML = '<div style=" color:rgba(194, 113, 0, 1);" >'+
     months[month] +
     " " +
-    year +
-    '<button class="btn btn-outline-primary botones" id="previous" onclick="previous()" style="margin-left:37%">' +
+    year  +
+    '<button class="btn btn-outline-primary botones" id="previous" onclick="previous()" style="margin-left:37%; background-color: #004e91; color:white;">' +
     "Mes anterior" +
     "</button>" +
-    '<button class="btn btn-outline-primary "id="next"onclick="next()">' +
+    '<button class="btn btn-outline-primary  "id="next"onclick="next()" style="background-color: #004e91; color:white;"> ' +
     "Proximo mes" +
     " </button>";
   selectYear.value = year;
-  selectMonth.value = month;
+  selectMonth.value = month;+ "</div>"
 
   // creating all cells
   let date = 1;
@@ -126,7 +126,7 @@ function showCalendar(month, year,data) {
           year === today.getFullYear() &&
           month === today.getMonth()
         ) {
-          cell.classList.add("bg-info");
+          cell.style.backgroundColor="#bfbfbf";
         } // color today's date
         cell.appendChild(cellText);
         row.appendChild(cell);

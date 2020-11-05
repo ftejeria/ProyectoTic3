@@ -8,6 +8,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+    <link rel="icon" href="../public/img/" />
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -31,7 +32,7 @@
           alt="logo"
           id="Barra"
       /></a>
-      <h4 class="barraPrincipal" style="color: white; margin-bottom: 1px">
+      <h4 class="barraPrincipal" style="color: white; margin-bottom: 1px  ">
         Exámenes  
       </h4>
 
@@ -63,7 +64,7 @@
             <h3 class="card-header" id="monthAndYear">
                <div class="form-inline">
               <button
-                class="btn btn-outline-primary "
+                class="btn btn-primary"
                 id="previous"
                 onclick="previous()"
               >
@@ -71,9 +72,10 @@
               </button>
 
               <button
-                class="btn btn-outline-primary "
+                class="btn btn-primary"
                 id="next"
                 onclick="next()"
+                
               >
                 Proximo mes
               </button>
@@ -85,7 +87,7 @@
             >
             
               <thead>
-                <tr>
+                <tr style="color:rgba(194, 113, 0, 1);">
                   <th>Dom</th>
                   <th>Lun</th>
                   <th>Mar</th>
@@ -96,7 +98,7 @@
                 </tr>
               </thead>
 
-              <tbody id="calendar-body"></tbody>
+              <tbody style="color:rgba(194, 113, 0, 1);" id="calendar-body"></tbody>
             </table>
         
           </div>
