@@ -50,9 +50,10 @@
       </div>
     </nav>
 
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-3 mt-3">
+    <table style="margin: auto;">
+      <tr>
+        <th>
+          <div>
           <nav class="navbar navbar-light bg-light">
             <span class="navbar-brand mb-0 h1">Agregar Examen</span>
           </nav>
@@ -157,11 +158,13 @@
             </form>
           </div>
         </div>
-        <div class="col-7 mt-4 text-centre">
+        </th>
+        <th>
+          <div style="margin-left: 20px;">
           <nav class="navbar navbar-light bg-light">
             <span class="navbar-brand mb-0 h1">Examenes Actuales</span>
           </nav>
-          <div class="example-1">
+          <div class="example-1" style="margin-bottom: 50px;">
             <table id="table" class="table table-striped thExam">
               <thead>
                 <th class="thExam">ID</th>
@@ -179,12 +182,14 @@
             </table>
           </div>
         </div>
+        </th>
 
-        <div class="col-2 mt-2">
+        <th>
+          <div style="margin-bottom: 400px;margin-left: 20px;">
           <nav class="navbar navbar-light bg-light">
             <span class="navbar-brand mb-0 h1" >Buscar</span>
           </nav>
-          <div class="jumbotron" style="padding-top:5px;">
+          <div class="jumbotron" >
             <form>
               <div class="form-group">
                 <label for="inputState">Nombre:</label>
@@ -220,8 +225,9 @@
             </form>
           </div>
         </div>
-      </div>
-    </div>
+        </th>
+      </tr>
+    </table>
 
     <script src="../public/js/examenes.js"></script>
     <script>
